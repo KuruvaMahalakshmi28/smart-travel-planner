@@ -6,23 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= place %> - Smart Travel Planner</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s ease-out both;
+    }
+  </style>
 </head>
-<body class="bg-[#f9f9f9] text-gray-900">
+<body class="bg-gradient-to-b from-blue-50 to-white text-gray-900">
 
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold text-blue-800 mb-4"><%= place %></h1>
+  <div class="max-w-5xl mx-auto px-4 py-12 animate-fade-in-up">
+    <h1 class="text-5xl font-extrabold text-blue-900 mb-6 tracking-wide border-b pb-2"><%= place %></h1>
 
-    <img src="<%= image %>" alt="<%= place %> image" class="rounded-lg w-full max-h-[400px] object-cover shadow mb-6">
+    <img src="<%= image %>" alt="<%= place %> image" class="rounded-2xl w-full max-h-[400px] object-cover shadow-xl mb-8 border-4 border-white">
 
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-blue-700 mb-2">📍 Speciality of <%= place %></h2>
-      <p class="text-gray-700 leading-relaxed"><%= description %></p>
+    <section class="mb-12 bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md">
+      <h2 class="text-3xl font-semibold text-blue-700 mb-3">📍 Speciality of <%= place %></h2>
+      <p class="text-gray-800 text-lg leading-relaxed"><%= description %></p>
     </section>
 
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-green-700 mb-2">💰 Budget Estimate</h2>
-      <ul class="list-disc pl-6 space-y-1">
+    <section class="mb-12 bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md">
+      <h2 class="text-3xl font-semibold text-green-700 mb-3">💰 Budget Estimate</h2>
+      <ul class="list-disc pl-6 space-y-2 text-gray-800 text-lg">
         <li>✈️ Flight: <%= budget.flight %></li>
         <li>🏨 Hotel: <%= budget.hotel %></li>
         <li>🍱 Food: <%= budget.food %></li>
@@ -31,42 +42,52 @@
       </ul>
     </section>
 
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-indigo-700 mb-2">🗺️ Live Location</h2>
-      <iframe class="w-full rounded shadow" height="300" frameborder="0" src="<%= map %>" allowfullscreen loading="lazy"></iframe>
-      <a href="<%= mapLink %>" target="_blank" class="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Open in Google Maps</a>
+    <section class="mb-12 bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md">
+      <h2 class="text-3xl font-semibold text-indigo-700 mb-3">🗺️ Live Location</h2>
+      <iframe class="w-full rounded-lg shadow" height="300" frameborder="0" src="<%= map %>" allowfullscreen loading="lazy"></iframe>
+      <a href="<%= mapLink %>" target="_blank" class="inline-block mt-4 px-6 py-2 bg-blue-700 text-white text-lg font-medium rounded-lg hover:bg-blue-800 transition">Open in Google Maps</a>
     </section>
 
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-purple-700 mb-4">💬 Reviews</h2>
-      <form action="/review/<%= place.toLowerCase() %>" method="POST" class="space-y-4 mb-6">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border rounded">
-        <select name="rating" required class="w-full p-3 border rounded">
-          <option value="">Rate your experience (1 to 5)</option>
-          <option value="1">⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
+    <section class="mb-8 bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md">
+      <h2 class="text-3xl font-semibold text-purple-700 mb-4">💬 Reviews</h2>
+      <form action="/review/<%= place.toLowerCase() %>" method="POST" class="grid gap-4 mb-6">
+        <input type="text" name="name" placeholder="Your name" required class="p-3 border rounded-md w-full" />
+        <select name="rating" class="p-3 border rounded-md w-full" required>
+          <option value="">Rate this place</option>
+          <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+          <option value="4">⭐️⭐️⭐️⭐️</option>
+          <option value="3">⭐️⭐️⭐️</option>
+          <option value="2">⭐️⭐️</option>
+          <option value="1">⭐️</option>
         </select>
-        <textarea name="review" placeholder="Write your review..." required class="w-full p-3 border rounded resize-none"></textarea>
-        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Submit Review</button>
+        <textarea name="review" placeholder="Write your review..." required class="p-3 border rounded-md w-full resize-none"></textarea>
+        <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition text-lg">Submit Review</button>
       </form>
 
       <% if (reviews.length === 0) { %>
-        <p class="text-gray-500">No reviews yet. Be the first to write one!</p>
+        <p class="text-gray-600">No reviews yet. Be the first to share your experience!</p>
       <% } else { %>
-        <ul class="space-y-3">
+        <ul class="space-y-4">
           <% reviews.forEach(r => { %>
-            <li class="bg-gray-100 p-4 rounded shadow">
-              <p class="font-semibold text-blue-800"><%= r.name %> <span class="text-yellow-500">(<%= '⭐'.repeat(r.rating) %>)</span></p>
-              <p class="mt-1 text-sm text-gray-800">"<%= r.comment %>"</p>
+            <li class="bg-gray-50 p-4 rounded-md shadow-md">
+              <p class="font-semibold text-lg text-gray-900"><%= r.name %> <span class="text-yellow-500">⭐️<%= r.rating %></span></p>
+              <p class="text-gray-700 italic mt-1">"<%= r.comment %>"</p>
             </li>
           <% }) %>
         </ul>
       <% } %>
     </section>
   </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+
+  <a href="/"
+   class="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-medium shadow-lg hover:shadow-xl hover:scale-105 transform transition duration-300 ease-in-out">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </svg>
+  Back to Home
+</a>
 
 </body>
 </html>
