@@ -1,0 +1,59 @@
+/* public/style.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #f9f9f9, #e9f4ff);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Blog Grid */
+#blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Blog Cards */
+.card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-top: 0.75rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* Global Image Hover Effect */
+img {
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}

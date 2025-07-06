@@ -1,0 +1,12 @@
+{
+  "paris": [
+    "Successfully Dream place Visited! So happy!"
+  ],
+  "mysore": [
+    {
+      "name": "Maha",
+      "rating": 5,
+      "comment": "Happy!place"
+    }
+  ]
+}
